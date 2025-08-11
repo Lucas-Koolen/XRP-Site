@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="nl" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XRP — Alles over XRP & XRPL (neutraal, feitelijk)</title>
+  <meta name="description" content="Neutrale, toegankelijke uitleg over XRP en het XRP Ledger (XRPL): technologie, tokenomics, koersdata, on-chain statistieken, risico’s en FAQ. Geen financieel advies." />
+
+  <!-- SEO / Open Graph -->
+  <meta property="og:title" content="XRP — Alles over XRP & XRPL" />
+  <meta property="og:description" content="Feitelijke uitleg, live koersgrafiek met fallback, tokenomics, XRPL-techniek en FAQ. Geen financieel advies." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="" />
+  <meta property="og:image" content="" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Inline emoji favicon (no assets folder required) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E💠%3C/text%3E%3C/svg%3E" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Chart.js & day.js via CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+  <!-- App code (ES modules) -->
+  <script type="module" defer src="js/i18n.js"></script>
+  <script type="module" defer src="js/compare.js"></script>
+  <script type="module" defer src="js/app.js"></script>
+
+  <meta name="theme-color" content="#0d1117" />
+
+  <!-- JSON-LD schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "XRP — Info & XRPL",
+    "url": "",
+    "inLanguage": "nl-NL",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Direct naar inhoud</a>
+
+  <header class="site-header" role="banner">
+    <div class="container row space-between center">
+      <div class="brand">XRP Info</div>
+      <nav aria-label="Hoofdnavigatie">
+        <ul class="nav">
+          <li><a href="#overzicht" data-i18n="nav_overview">Overzicht</a></li>
+          <li><a href="#technologie" data-i18n="nav_tech">Technologie</a></li>
+          <li><a href="#tokenomics" data-i18n="nav_tokenomics">Tokenomics</a></li>
+          <li><a href="#markt" data-i18n="nav_market">Koers</a></li>
+          <li><a href="#onchain" data-i18n="nav_onchain">On-chain</a></li>
+          <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+          <li><a href="#bronnen" data-i18n="nav_sources">Bronnen</a></li>
+        </ul>
+      </nav>
+      <div class="controls row gap-sm">
+        <label class="switch" aria-label="Donkere modus">
+          <input id="themeToggle" type="checkbox" />
+          <span>🌙</span>
+        </label>
+        <select id="langSelect" aria-label="Taal" class="select">
+          <option value="nl">NL</option>
+          <option value="en">EN</option>
+        </select>
+        <select id="fiatSelect" aria-label="Valuta" class="select">
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <h1 id="hero-title" data-i18n="hero_title">XRP, helder uitgelegd — zonder hype</h1>
+      <p class="lead" data-i18n="hero_sub">Feitelijke info over XRP & het XRP Ledger (XRPL): technologie, tokenomics, live koersgrafieken met nette fallback, en veelgestelde vragen.</p>
+      <p class="disclaimer" role="note" data-i18n="disclaimer">Disclaimer: dit is geen financieel advies. Doe altijd je eigen onderzoek.</p>
+      <div id="dataStatus" class="badge">Status: …</div>
+      <button id="backToTop" class="fab" aria-label="Terug naar boven">↑</button>
+    </div>
+  </section>
+
+  <main id="main">
+    <section id="overzicht" class="section">
+      <div class="container">
+        <h2 data-i18n="overview_title">Overzicht XRP</h2>
+        <p data-i18n="overview_text">XRP is een digitale asset die werkt op het XRP Ledger (XRPL). Het netwerk is ontworpen voor snelle, goedkope waardetransfers. Belangrijk: XRP (de asset) staat los van Ripple (het bedrijf). Deze site biedt neutrale, samengebalanseerde info.</p>
+      </div>
+    </section>
+
+    <section id="geschiedenis" class="section">
+      <div class="container">
+        <h2 data-i18n="history_title">Geschiedenis & tijdlijn</h2>
+        <ul class="timeline" id="timeline">
+        </ul>
+        <p class="updated" id="lastUpdated"></p>
+      </div>
+    </section>
+
+    <section id="technologie" class="section">
+      <div class="container">
+        <h2 data-i18n="tech_title">Technologie (XRPL)</h2>
+        <ul>
+          <li data-i18n="tech_consensus">Consensus: XRPL-consensus (geen PoW/PoS), snelle finaliteit.</li>
+          <li data-i18n="tech_perf">Prestatie: lage latency, hoge throughput (contextafhankelijk).</li>
+          <li data-i18n="tech_fees">Fees: zeer laag; afhankelijk van netwerkbelasting.</li>
+          <li data-i18n="tech_addrs">Adressen & transacties: uniek adresformaat, memo’s, tags.</li>
+        </ul>
+        <details>
+          <summary data-i18n="how_verify_title">How to verify: zelf XRPL-transacties bekijken</summary>
+          <ol id="verifySteps"></ol>
+        </details>
+      </div>
+    </section>
+
+    <section id="ripplevxxrp" class="section">
+      <div class="container">
+        <h2 data-i18n="ripple_xrp_title">Ripple vs. XRP</h2>
+        <p data-i18n="ripple_xrp_text">Ripple is een bedrijf dat betalingsoplossingen ontwikkelt; XRP is de onafhankelijke digitale asset die op het XRPL werkt. Ze zijn gerelateerd in geschiedenis, maar niet hetzelfde.</p>
+      </div>
+    </section>
+
+    <section id="tokenomics" class="section">
+      <div class="container">
+        <h2 data-i18n="tokenomics_title">Tokenomics</h2>
+        <ul>
+          <li data-i18n="tok_supply">Totale supply, circulerende supply en escrow-mechanisme.</li>
+          <li data-i18n="tok_dynamics">Dynamiek: deflatoire component via fees, overige factoren.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="markt" class="section">
+      <div class="container">
+        <h2 data-i18n="market_title">Koers & marktdaten</h2>
+        <div class="row wrap gap-md">
+          <div class="card">
+            <h3 data-i18n="price_current">Huidige prijs</h3>
+            <div id="priceBox" class="price">—</div>
+            <div class="meta grid-2">
+              <div><span data-i18n="market_cap">Marktkapitalisatie</span><br><strong id="mc">—</strong></div>
+              <div><span data-i18n="volume_24h">Volume (24h)</span><br><strong id="vol">—</strong></div>
+            </div>
+          </div>
+          <div class="card grow">
+            <h3 data-i18n="chart_title">Grafiek 24h / 7d / 30d</h3>
+            <div class="row gap-sm">
+              <button class="btn btn-light chart-range" data-range="1" aria-pressed="true">24h</button>
+              <button class="btn btn-light chart-range" data-range="7">7d</button>
+              <button class="btn btn-light chart-range" data-range="30">30d</button>
+              <button id="copySource" class="btn btn-outline" data-i18n="copy_source">Kopieer bronvermelding</button>
+            </div>
+            <canvas id="priceChart" aria-label="Koersgrafiek" role="img"></canvas>
+            <div class="sr-alt" aria-live="polite">
+              <table class="data-table" id="chartDataTable" aria-label="Koersdata tabel"></table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="onchain" class="section">
+      <div class="container">
+        <h2 data-i18n="onchain_title">On-chain statistieken</h2>
+        <div class="grid-3 gap-md">
+          <div class="stat">
+            <div class="stat-label" data-i18n="onchain_tx">Transacties (laatste ~15 min)</div>
+            <div class="stat-value" id="txCount">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label" data-i18n="onchain_fee">Gem. fee (median)</div>
+            <div class="stat-value" id="avgFee">—</div>
+          </div>
+          <div class="stat">
+            <div class="stat-label" data-i18n="onchain_tps">Geschatte TPS piek (recent)</div>
+            <div class="stat-value" id="tpsPeak">—</div>
+          </div>
+        </div>
+        <p class="note" data-i18n="onchain_note">On-chain cijfers komen live via Ripple Data API. Als een endpoint faalt, tonen we een nette fallback met uitleg.</p>
+      </div>
+    </section>
+
+    <section id="compare" class="section">
+      <div class="container">
+        <h2 data-i18n="compare_title">Vergelijk XRP met andere assets</h2>
+        <div class="row gap-sm">
+          <label>
+            <span data-i18n="compare_pick">Kies asset A</span>
+            <select id="assetA" class="select"></select>
+          </label>
+          <label>
+            <span data-i18n="compare_pick">Kies asset B</span>
+            <select id="assetB" class="select"></select>
+          </label>
+          <button id="runCompare" class="btn" data-i18n="compare_run">Vergelijk</button>
+        </div>
+        <div id="compareResult" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <section id="risicos" class="section">
+      <div class="container">
+        <h2 data-i18n="risks_title">Risico’s</h2>
+        <ul>
+          <li data-i18n="risk_market">Marktrisico en volatiliteit.</li>
+          <li data-i18n="risk_liquidity">Liquiditeits- en prijsspreiding per markt.</li>
+          <li data-i18n="risk_bridge">Bridge- en contractrisico’s bij cross-chain gebruik.</li>
+          <li data-i18n="risk_regulatory">Regulatoire onzekerheid, per jurisdictie verschillend.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2>FAQ</h2>
+        <details>
+          <summary data-i18n="faq_1_q">Is XRP hetzelfde als Ripple?</summary>
+          <p data-i18n="faq_1_a">Nee. Ripple is een bedrijf; XRP is een digitale asset op het XRPL.</p>
+        </details>
+        <details>
+          <summary data-i18n="faq_2_q">Zijn cijfers op de site live?</summary>
+          <p data-i18n="faq_2_a">Ja, via publieke API’s. Als dat niet lukt tonen we gemarkeerde demo-data (fallback).</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="bronnen" class="section">
+      <div class="container">
+        <h2 data-i18n="sources_title">Bronnen & verdere lectuur</h2>
+        <ul class="links">
+          <li><a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko</a></li>
+          <li><a href="https://xrpl.org/" target="_blank" rel="noopener">XRPL Docs</a></li>
+          <li><a href="https://github.com/XRPLF" target="_blank" rel="noopener">XRPLF GitHub</a></li>
+        </ul>
+        <a class="btn btn-outline" href="https://github.com/" target="_blank" rel="noopener" data-i18n="feedback_issue">Meld een issue op GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container row space-between wrap">
+      <small>© <span id="year"></span> XRP Info</small>
+      <small data-i18n="license_text">Code MIT; tekst CC BY-SA 4.0. Geen financieel advies.</small>
+    </div>
+  </footer>
+
+  <noscript>
+    <div class="noscript">Deze site werkt beter met JavaScript ingeschakeld. Grafieken en live data worden dan zichtbaar.</div>
+  </noscript>
+</body>
+</html>
